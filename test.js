@@ -29,9 +29,9 @@ function getBooks(allBooks) {
             
             <div class="back">
             
-            <div class="d-flex justify-content-center"><h3>${book.title}</h3></div>
-            <div class="d-flex align-items-stretch">${book.description}</div>
-            <div><button type="button" onclick= "window.open("${book.detail}")">details</button></div>
+            <div class="d-flex justify-content-center"><h3><strong>${book.title}</strong></h3></div>
+            <div class="d-flex align-items-stretch"><em>"${book.description}"</em></div>
+            <div><button type="button" onclick= "window.open("${book.detail}")">More Details</button></div>
             </div>
         
 
