@@ -31,6 +31,7 @@ function getBooks(allBooks) {
             
             <div class="d-flex justify-content-center"><h3><strong>${book.title}</strong></h3></div>
             <div class="d-flex align-items-stretch"><em>"${book.description}"</em></div>
+            <div><p><strong>Language: "${book.language}"</strong></p></div>
             <div><a href="${book.detail}" target="_blank" ><button type="button">More Details</button></a></div>
             </div>
         
