@@ -1,5 +1,4 @@
 
-
 $(function () {
     fetch("https://api.myjson.com/bins/8zpvs")
         .then(function (response) {
@@ -7,22 +6,24 @@ $(function () {
         }).then(function (data) {
             var allBooks = data.books;
             getBooks(allBooks);
-            console.log(allBooks);
+            // console.log(allBooks);
+            activateEL(allBooks);
+
         });
 });
 
 function getBooks(allBooks) {
+    // console.log(allBooks.length);
     var template = "";
     allBooks.forEach(book => {
 
         template += `
         
-        <div class="col-sm-6 col-md-6 col-lg-4"><div class="d-flex justify-content-center">
+        <div class="book col-sm-12 col-md-6 col-lg-6 col-xl-4"><div class="d-flex justify-content-center">
          <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
             <div class="flipper">
                <div class="front">
            
-               
                <img class= "image"  src="${book.cover}">
             
               </div>
@@ -39,13 +40,46 @@ function getBooks(allBooks) {
          </div>
         </div>
         </div></div>
-        
-        
-    
         `
 
     });
     document.getElementById("bookstore").innerHTML = template;
 }
 
+function activateEL(listBooks){
+    var input = document.querySelector("#myInput");
+    input.addEventListener("keyup", search);
+    
+    // function search(e) {
+    //     // console.log(e.target.value);
+    //     var filtredBooks = [];
+    
+    //     listBooks.forEach(function (item) {
+    //         var searchValue = e.target.value.toLowerCase();
+    //         var title = item.title.toLowerCase();
+    //         var description = item.description.toLowerCase();
+    
+    //         if (title.includes(searchValue) || description.includes(searchValue)) {
+    //             filtredBooks.push(item);
+    //         }
+    //     })
+    //     getBooks(filtredBooks);
+    // }
+}
+
+function search(e) {
+
+    var myBookDivs = Array.from(document.querySelectorAll('.book'));
+    
+    var searchValue = e.target.value.toLowerCase();
+    myBookDivs.forEach(oneDiv => {
+        var textToSearchIn = oneDiv.firstChild.firstElementChild.firstElementChild.innerText.toLowerCase();
+        
+        if(!textToSearchIn.includes(searchValue)){
+            oneDiv.style.display = 'none';
+        } else if (textToSearchIn.includes(searchValue)){
+            oneDiv.style.display = 'block';
+        }
+    })
+}
 
