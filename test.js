@@ -13,7 +13,6 @@ $(function () {
 });
 
 function getBooks(allBooks) {
-    // console.log(allBooks.length);
     var template = "";
     allBooks.forEach(book => {
 
